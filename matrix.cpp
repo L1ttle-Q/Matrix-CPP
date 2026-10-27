@@ -313,8 +313,8 @@ double norm(const Matrix<T1>& a, const Matrix<T2>& b)
     // return res / (a.get_r() * a.get_c());
     double res = 0;
     for (int i = 1; i <= a.get_r(); i++)
-        for (int j = 1; j <= a.get_r(); j++)
-            res = std::max(res, abs(a[i][j] - b[i][j]));
+        for (int j = 1; j <= a.get_c(); j++)
+            res = std::max(res, std::abs(static_cast<double>(a[i][j]) - static_cast<double>(b[i][j])));
     return res;
 }
 
@@ -409,6 +409,7 @@ void Solve(Matrix<T1> init_x, Matrix<T2> A, Matrix<T3> b,
     printf("non-convergent!\n");
 }
 
+#ifndef MATRIX_CPP_NO_MAIN
 int main()
 {
     // Matrix<double> init_x(3, 1);
@@ -463,3 +464,4 @@ int main()
 
     return 0;
 }
+#endif

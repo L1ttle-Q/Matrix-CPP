@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.16)
+project(matrix_cpp LANGUAGES CXX)
+add_executable(matrix_demo matrix.cpp)
+target_compile_features(matrix_demo PRIVATE cxx_std_11)
+
+include(CTest)
+if(BUILD_TESTING)
+    add_executable(matrix_tests tests/matrix_tests.cpp)
+    target_compile_features(matrix_tests PRIVATE cxx_std_11)
+    add_test(NAME matrix_operations COMMAND matrix_tests)
+endif()
